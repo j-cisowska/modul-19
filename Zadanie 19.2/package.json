@@ -1,0 +1,14 @@
+{
+  "name": "zadanie192",
+  "version": "1.0.0",
+  "description": "",
+  "main": "actions.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Joanna Cisowska",
+  "license": "ISC",
+  "dependencies": {
+    "uuid": "^3.2.1"
+  }
+}
