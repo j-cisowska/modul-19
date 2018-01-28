@@ -1,22 +1,15 @@
-
-
 import {ADD_COMMENT} from './actions'
 import {REMOVE_COMMENT} from './actions'
 import {EDIT_COMMENT} from './actions'
 import {THUMB_UP_COMMENT} from './actions'
 import {THUMB_DOWN_COMMENT} from './actions'
 
+/////????
 const initialState = {
     comments: [],
     users: []
 };
 
-/*function reducer(state = initialState, action) {
-    if (!state) {
-        return initialState;
-}
-    return state;
-}*/
 
 function reducer(state = initialState, action) {
     switch(action.type) {
@@ -28,17 +21,49 @@ function reducer(state = initialState, action) {
                     text: action.text,
                     votes: 0
                 }
-                , ...state.comments]
+                , ...state.comments]; ///????
+		
 		case REMOVE_COMMENT:
             return Object.assign({}, state, {
                 comments: state.comments.filter(comment => comment.id !== action.id)
-        case EDIT_COMMENT:
-			return comments.map(item => item.id === action.id ? Object.assign({}, item, { text: action.text }) : item ); 
+			});
+			
+		case EDIT_COMMENT:
+			return state.comments.map(comment => {
+				if (comment.id === action.id) {
+					return Object.assign({}, comment, {
+						text: action.text
+					}); 
+				} 
+			else {
+				return comment;
+				}
+			});
+					
 		case THUMB_UP_COMMENT:  
-			return comments.map(item => item.id === action.id ? Object.assign({}, item, { rate: item.rate + 1 }) : item ); 
-		case THUMB_DOWN_COMMENT:
-			return comments.map(item => item.id === action.id ? Object.assign({}, item, { rate: item.rate - 1 }) : item ); 
-			/////POPRAWIĆ
+			return state.comments.map(comment => {
+				if (comment.id === action.id) {
+					return Object.assign({}, comment, {
+						rate: comment.rate + 1
+						});
+				}
+			else {
+				return comment;
+				}
+			});
+			
+			case THUMB_DOWN_COMMENT:  
+			return state.comments.map(comment => {
+				if (comment.id === action.id) {
+					return Object.assign({}, comment, {
+						rate: comment.rate - 1
+						});
+					}
+				else {
+					return comment;
+				}
+		});
+		 
 			
 			});
         default:

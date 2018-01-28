@@ -1,4 +1,4 @@
-
+import uuid from 'uuid';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const REMOVE_COMMENT = 'REMOVE_COMMENT';
 export const EDIT_COMMENT = 'EDIT_COMMENT';
@@ -16,30 +16,28 @@ export function addComment(text) {
 export function removeComment(id) {
     return {
         type: REMOVE_COMMENT,
-        id: 5 //id jakiegoś komentarza który ma być usunięty
+        id: id //id jakiegoś komentarza który ma być usunięty
     }
 }
 
-export function editComment(text) {
+export function editComment(id, text) {
     return {
         type: EDIT_COMMENT,
-        id: 10,
-		text: 'zeedytowany tekst'
+        id: id,
+		text: text
     }
 }
 
-export function thumbUpComment(id) {
+export function thumbUpComment(commentId) {
     return {
         type: THUMB_UP_COMMENT,
-		text,
-        id: 7 //id jakiegoś komentarza który ma dostać kciuk w górę
+        id: commentId //id jakiegoś komentarza który ma dostać kciuk w górę
     }
 }
 
-export function thumbDownComment(id) {
+export function thumbDownComment(commentId) {
     return {
         type: THUMB_DOWN_COMMENT,
-		text,
-        id: 8 //id jakiegoś komentarza który ma być usunięty
+        id: commentId //id jakiegoś komentarza który ma być usunięty
     }
 }
